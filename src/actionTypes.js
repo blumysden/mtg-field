@@ -1,0 +1,6 @@
+export const ADD_TOKEN = 'ADD_TOKEN'
+export const ADD_ONE_LIFE = 'ADD_ONE_LIFE'
+export const SUBTRACT_ONE_LIFE = 'SUBTRACT_ONE_LIFE'
+export const CHANGE_LIFE = 'CHANGE_LIFE'
+export const CHANGE_COLOR = 'CHANGE_COLOR'
+export const TOGGLE_SETTINGS = 'TOGGLE_SETTINGS'

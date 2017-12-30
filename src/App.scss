@@ -1,0 +1,85 @@
+$alegreya: 'Alegreya', serif;
+
+.white {
+  background-color: #fff;
+}
+
+.black {
+  background-color: #000;
+}
+
+.blue {
+  background-color: rgba(55, 134, 200, .5);
+}
+  
+.red {
+  background-color: rgba(224, 60, 52, .5);
+}
+  
+.green {
+  background-color: rgba(77, 160, 64, .5);
+}
+
+.field {
+  height: 100vh;
+}
+
+.settings {
+  height: 40px;
+  width: 40px;
+}
+
+.player {
+  height: 25vh;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding-top: 10px; 
+}
+
+.life-stats {
+  font-family: $alegreya;
+  color: #000;
+  font-size: 120px;
+  line-height: 120px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.field.black .life-stats {
+  color: #fff;
+}
+
+button.life-stats {
+  // border-radius: 40px;
+  // line-height: 72px;
+  font-size: 60px;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  background-color: inherit;
+}
+
+.color-controls li {
+  height: 40px;
+  width: 40px;
+  // border-radius: 20px;
+  // opacity: .5;
+  border: 1px solid #999;
+  
+  overflow: hidden;
+  text-indent: -3000px;
+  display: none;
+  
+  .settings-on & {
+    display: inline-block;
+  }
+  
+  &.settings {
+    background-image: url('./gear.png');
+    background-size: cover;
+    border: none;
+    display: inline-block;
+  }
+}
