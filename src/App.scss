@@ -9,15 +9,15 @@ $alegreya: 'Alegreya', serif;
 }
 
 .blue {
-  background-color: rgba(55, 134, 200, .5);
+  background-color: rgba(55, 134, 200, 1);
 }
   
 .red {
-  background-color: rgba(224, 60, 52, .5);
+  background-color: rgba(224, 60, 52, 1);
 }
   
 .green {
-  background-color: rgba(77, 160, 64, .5);
+  background-color: rgba(77, 160, 64, 1);
 }
 
 .field {
@@ -61,25 +61,43 @@ button.life-stats {
   background-color: inherit;
 }
 
-.color-controls li {
-  height: 40px;
-  width: 40px;
-  // border-radius: 20px;
-  // opacity: .5;
-  border: 1px solid #999;
+.color-controls {
   
+  width: 40px;
   overflow: hidden;
-  text-indent: -3000px;
-  display: none;
+  white-space: nowrap;
+  transition: width 2s;
   
   .settings-on & {
-    display: inline-block;
+    width: 100%;
   }
   
-  &.settings {
-    background-image: url('./gear.png');
-    background-size: cover;
-    border: none;
-    display: inline-block;
+  li {
+    height: 35px;
+    width: 35px;
+    border-radius: 18px;
+    // opacity: .5;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    margin-left: 15px;
+    margin-top: 5px;
+    
+    overflow: hidden;
+    text-indent: -3000px;
+    display: none;
+    
+    .settings-on & {
+      display: inline-block;
+    }
+    
+    &.settings {
+      margin: 0;
+      height: 40px;
+      width: 40px;
+      background-image: url('./gear.png');
+      background-size: cover;
+      border: none;
+      display: inline-block;
+    }
   }
 }
