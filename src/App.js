@@ -2,18 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { changeLife, changeColor, toggleSettings } from './actions'
 import './App.css';
+import Token from './token'
+import TokenEditor from './tokenEditor'
 
 const mapStateToProps = (state, ownProps) => {
-  const { player, field } = state;
+  const { player, field, tokens } = state;
+  console.log('msp', tokens);
   return {
     lifePoints: player.lifePoints,
     fieldColor: field.color,
-    settings: field.settings
+    settings: field.settings,
+    tokens
   }
 }
 
 class App extends Component {
-  
+
   constructor(props) {
     super(props);
     this.addOneLife = this.addOneLife.bind(this);
@@ -21,28 +25,33 @@ class App extends Component {
     this.changeColor = this.changeColor.bind(this);
     this.toggleSettings = this.toggleSettings.bind(this);
   }
-  
+
+  componentWillRecieveProps(newProps) {
+    console.log('new props?', newProps);
+  }
+
   addOneLife() {
     this.props.dispatch(changeLife(1))
   }
-  
+
   subtractOneLife() {
     this.props.dispatch(changeLife(-1))
   }
-  
+
   changeColor(e) {
     const color = e.target.innerText.toLowerCase();
     if (color) {
       this.props.dispatch(changeColor(color));
     }
   }
-  
+
   toggleSettings() {
     this.props.dispatch(toggleSettings())
   }
-  
+
   render() {
-    const { fieldColor, lifePoints, settings } = this.props
+    const { fieldColor, lifePoints, settings, tokens } = this.props
+    console.log('how many tokens?', tokens);
     return (
       <div>
         <div className={ `bg-mask ${fieldColor}`}></div>
@@ -59,6 +68,10 @@ class App extends Component {
             <button className="life-stats" onClick={ this.subtractOneLife }>-</button>
             <span className="life-points life-stats">{ lifePoints }</span>
             <button className="life-stats" onClick={ this.addOneLife }>+</button>
+          </div>
+          <div className="battlefield">
+            { tokens.map((t) => <Token id={ t.id }/>) }
+            <TokenEditor />
           </div>
         </div>
       </div>

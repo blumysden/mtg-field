@@ -24,7 +24,10 @@ export function field (state={
 export function tokens (state=[], action) {
   switch (action.type) {
     case actionTypes.ADD_TOKEN:
-      return state;
+      return state.concat({
+        ...action.token,
+        id: Date.parse(new Date())
+      });
     default:
       return state
   }
@@ -44,7 +47,7 @@ export function player (state={
   }
 }
 
-  
+
 const rootReducer = combineReducers({
   field,
   tokens,
