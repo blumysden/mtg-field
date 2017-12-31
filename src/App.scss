@@ -1,5 +1,9 @@
 $alegreya: 'Alegreya', serif;
 
+body {
+  touch-action: manipulation;
+}
+
 .white {
   background-color: #fff;
 }
