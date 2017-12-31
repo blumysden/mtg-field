@@ -44,19 +44,22 @@ class App extends Component {
   render() {
     const { fieldColor, lifePoints, settings } = this.props
     return (
-      <div className={ `field ${fieldColor} settings-${ (settings) ? 'on': 'off' }`}>
-        <ul className="color-controls" onClick={ this.changeColor }>
-          <li className="settings" onClick={ this.toggleSettings }></li>
-          <li className="blue">Blue</li>
-          <li className="red">Red</li>
-          <li className="green">Green</li>
-          <li className="black">Black</li>
-          <li className="white">White</li>
-        </ul>
-        <div className="player">
-          <button className="life-stats" onClick={ this.subtractOneLife }>-</button>
-          <span className="life-points life-stats">{ lifePoints }</span>
-          <button className="life-stats" onClick={ this.addOneLife }>+</button>
+      <div>
+        <div className={ `bg-mask ${fieldColor}`}></div>
+        <div className={ `field settings-${ (settings) ? 'on': 'off' }`}>
+          <ul className="color-controls" onClick={ this.changeColor }>
+            <li className="settings" onClick={ this.toggleSettings }></li>
+            <li className="blue">Blue</li>
+            <li className="red">Red</li>
+            <li className="green">Green</li>
+            <li className="black">Black</li>
+            <li className="white">White</li>
+          </ul>
+          <div className="player">
+            <button className="life-stats" onClick={ this.subtractOneLife }>-</button>
+            <span className="life-points life-stats">{ lifePoints }</span>
+            <button className="life-stats" onClick={ this.addOneLife }>+</button>
+          </div>
         </div>
       </div>
     );
