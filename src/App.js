@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { changeLife, changeColor, toggleSettings } from './actions'
 import './App.css';
+import 'mana-font/css/mana.css'
 import Token from './token'
 import TokenEditor from './tokenEditor'
 
@@ -26,7 +27,7 @@ class App extends Component {
     this.toggleSettings = this.toggleSettings.bind(this);
   }
 
-  componentWillRecieveProps(newProps) {
+  componentWillReceiveProps(newProps) {
     console.log('new props?', newProps);
   }
 
@@ -58,7 +59,7 @@ class App extends Component {
         <div className={ `field settings-${ (settings) ? 'on': 'off' }`}>
           <ul className="color-controls" onClick={ this.changeColor }>
             <li className="settings" onClick={ this.toggleSettings }></li>
-            <li className="blue">Blue</li>
+            <li className="blue ms ms-u">Blue</li>
             <li className="red">Red</li>
             <li className="green">Green</li>
             <li className="black">Black</li>
@@ -70,6 +71,7 @@ class App extends Component {
             <button className="life-stats" onClick={ this.addOneLife }>+</button>
           </div>
           <div className="battlefield">
+            <p>MANA! <span className="ms ms-u"></span></p>
             { tokens.map((t) => <Token id={ t.id }/>) }
             <TokenEditor />
           </div>
