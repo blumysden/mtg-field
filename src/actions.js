@@ -26,3 +26,14 @@ export const addToken = (token) => {
     token
   }
 }
+
+export const editToken = (id) => {
+  return {
+    type: actionTypes.EDIT_TOKEN,
+    id
+  }
+}
+
+export const closeTokenEditor = () => {
+  return { type: actionTypes.CLOSE_TOKEN_EDITOR }
+}

@@ -3,7 +3,8 @@ import * as actionTypes from './actionTypes';
 
 export function field (state={
   color: 'white',
-  settings: false
+  settings: false,
+  editing: false
 }, action) {
   switch (action.type) {
     case actionTypes.CHANGE_COLOR:
@@ -15,6 +16,16 @@ export function field (state={
       return {
         ...state,
         settings: !state.settings
+      }
+    case actionTypes.EDIT_TOKEN:
+      return {
+        ...state,
+        editing: action.id
+      }
+    case actionTypes.CLOSE_TOKEN_EDITOR:
+      return {
+        ...state,
+        editing: false
       }
     default:
       return state

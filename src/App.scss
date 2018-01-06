@@ -76,9 +76,9 @@ button.life-stats {
 }
 
 .color-controls {
-  position: absolute;
-  z-index: 100;
-  width: 60px;
+  // position: absolute;
+  // z-index: 100;
+  // width: 60px;
   overflow: hidden;
   white-space: nowrap;
   transition: width 1s;
@@ -97,7 +97,7 @@ button.life-stats {
     box-sizing: border-box;
     border-radius: 21px;
     text-align: center;
-    display: none;
+    // display: none;
 
     .settings-on & {
       display: inline-block;
@@ -109,5 +109,69 @@ button.life-stats {
       border: none;
       display: inline-block;
     }
+  }
+}
+
+.deck {
+  width: 70px;
+  height: 100px;
+  text-align: center;
+  line-height: 75px;
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+  border-radius: 5px;
+  background-image: url('./mtg-card-back.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid #000;
+}
+
+.token-creature-editor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  border: 5px solid #000;
+  background-color: #fff;
+  display: none;
+
+  .editing-on & {
+    display: block;
+  }
+
+  button {
+    font-size: 24px;
+    display: inline-block;
+    font-family: $alegreya;
+    border-radius: 4px;
+    background-color: #999;
+  }
+
+  label,
+  input,
+  legend {
+    font-size: 24px;
+    display: block;
+    font-family: $alegreya;
+    margin: 10px auto;
+    width: 80%;
+  }
+
+  label,
+  legend {
+    text-align: center;
+  }
+
+  input {
+    border: 1px solid #999;
+  }
+
+  .strength input {
+    display: inline-block;
+    width: 50px;
   }
 }
