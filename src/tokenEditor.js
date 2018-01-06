@@ -21,8 +21,14 @@ class TokenEditor extends Component {
   updateToken(e) {
     e.preventDefault();
     this.props.dispatch(addToken({
-      type: this.tokenType.value
+      id: Date.parse(new Date()),
+      type: this.tokenType.value,
+      name: this.tokenName.value,
+      atk: this.tokenAtk.value,
+      def: this.tokenDef.value,
+      abilities: this.tokenAbilities.value
     }))
+    this.cancel(e);
   }
 
   cancel(e) {
@@ -31,7 +37,7 @@ class TokenEditor extends Component {
   }
 
   render() {
-    const { id, type, name, atk, def, abilities } = this.props
+    const { id, type=null, name=null, atk, def, abilities } = this.props
     return (
       <div className="token-creature-editor">
         <form onSubmit={ this.updateToken }>

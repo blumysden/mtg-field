@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state, ownProps) => {
   const { tokens } = state;
-  return {
-  }
+  const props = tokens.find((t) => t.id === ownProps.id)
+  return (props) ? { ...props } : {}
 }
 
 class Token extends Component {
@@ -16,9 +16,10 @@ class Token extends Component {
 
 
   render() {
+    const { name, id } = this.props
     return (
       <div className="token-creature">
-        <p>RAR</p>
+        <p>{ name }</p>
       </div>
     );
   }
