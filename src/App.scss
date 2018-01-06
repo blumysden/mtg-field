@@ -1,4 +1,9 @@
 $alegreya: 'Alegreya', serif;
+$blue: rgba(55, 134, 200, 1);
+$red: rgba(224, 60, 52, 1);
+$green: rgba(77, 160, 64, 1);
+$black: #000;
+$white: #fff;
 
 body {
   touch-action: manipulation;
@@ -6,23 +11,24 @@ body {
 }
 
 .white {
-  background-color: #fff;
+  background-color: $white;
 }
 
 .black {
-  background-color: #000;
+  background-color: $black;
+  color: $white;
 }
 
 .blue {
-  background-color: rgba(55, 134, 200, 1);
+  background-color: $blue;
 }
-  
+
 .red {
-  background-color: rgba(224, 60, 52, 1);
+  background-color: $red;
 }
-  
+
 .green {
-  background-color: rgba(77, 160, 64, 1);
+  background-color: $green;
 }
 
 .bg-mask{
@@ -43,7 +49,7 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: row;
-  padding-top: 10px; 
+  padding-top: 10px;
 }
 
 .life-stats {
@@ -72,37 +78,32 @@ button.life-stats {
 .color-controls {
   position: absolute;
   z-index: 100;
-  width: 40px;
+  width: 60px;
   overflow: hidden;
   white-space: nowrap;
-  transition: width 2s;
-  
+  transition: width 1s;
+
   .settings-on & {
     width: 100%;
   }
-  
+
   li {
-    height: 35px;
-    width: 35px;
-    border-radius: 18px;
-    // opacity: .5;
-    border: 1px solid #999;
+    margin: 0;
+    margin-right: 5px;
+    height: 42px;
+    width: 42px;
+    font-size: 32px;
+    line-height: 42px;
     box-sizing: border-box;
-    margin-left: 15px;
-    margin-top: 5px;
-    
-    overflow: hidden;
-    text-indent: -3000px;
+    border-radius: 21px;
+    text-align: center;
     display: none;
-    
+
     .settings-on & {
       display: inline-block;
     }
-    
+
     &.settings {
-      margin: 0;
-      height: 40px;
-      width: 40px;
       background-image: url('./gear.png');
       background-size: cover;
       border: none;

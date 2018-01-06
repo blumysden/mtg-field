@@ -40,7 +40,7 @@ class App extends Component {
   }
 
   changeColor(e) {
-    const color = e.target.innerText.toLowerCase();
+    const color = e.target.getAttribute('data-color');
     if (color) {
       this.props.dispatch(changeColor(color));
     }
@@ -58,12 +58,12 @@ class App extends Component {
         <div className={ `bg-mask ${fieldColor}`}></div>
         <div className={ `field settings-${ (settings) ? 'on': 'off' }`}>
           <ul className="color-controls" onClick={ this.changeColor }>
-            <li className="settings" onClick={ this.toggleSettings }></li>
-            <li className="blue ms ms-u">Blue</li>
-            <li className="red">Red</li>
-            <li className="green">Green</li>
-            <li className="black">Black</li>
-            <li className="white">White</li>
+            <li className="settings ms" onClick={ this.toggleSettings }></li>
+            <li className="blue ms ms-u" data-color="blue"></li>
+            <li className="red ms ms-r" data-color="red"></li>
+            <li className="green ms ms-g" data-color="green"></li>
+            <li className="black ms ms-b" data-color="black"></li>
+            <li className="white ms ms-w" data-color="white"></li>
           </ul>
           <div className="player">
             <button className="life-stats" onClick={ this.subtractOneLife }>-</button>

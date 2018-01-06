@@ -6,7 +6,8 @@ body {
   background-color: #fff; }
 
 .black {
-  background-color: #000; }
+  background-color: #000;
+  color: #fff; }
 
 .blue {
   background-color: #3786c8; }
@@ -56,29 +57,26 @@ button.life-stats {
 .color-controls {
   position: absolute;
   z-index: 100;
-  width: 40px;
+  width: 60px;
   overflow: hidden;
   white-space: nowrap;
-  transition: width 2s; }
+  transition: width 1s; }
   .settings-on .color-controls {
     width: 100%; }
   .color-controls li {
-    height: 35px;
-    width: 35px;
-    border-radius: 18px;
-    border: 1px solid #999;
+    margin: 0;
+    margin-right: 5px;
+    height: 42px;
+    width: 42px;
+    font-size: 32px;
+    line-height: 42px;
     box-sizing: border-box;
-    margin-left: 15px;
-    margin-top: 5px;
-    overflow: hidden;
-    text-indent: -3000px;
+    border-radius: 21px;
+    text-align: center;
     display: none; }
     .settings-on .color-controls li {
       display: inline-block; }
     .color-controls li.settings {
-      margin: 0;
-      height: 40px;
-      width: 40px;
       background-image: url("./gear.png");
       background-size: cover;
       border: none;
