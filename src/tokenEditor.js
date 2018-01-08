@@ -4,9 +4,9 @@ import { addToken, closeTokenEditor } from './actions'
 import ColorPicker from './color-picker'
 
 const mapStateToProps = (state, ownProps) => {
-  const { tokens } = state;
-  return {
-  }
+  const { tokens, field } = state;
+  const props = tokens.find((t) => t.id === field.editing)
+  return (props) ? { ...props } : {}
 }
 
 class TokenEditor extends Component {
@@ -16,6 +16,13 @@ class TokenEditor extends Component {
     ['updateToken', 'cancel'].forEach((m) => {
       this[m] = this[m].bind(this);
     })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.id !== nextProps.id) {
+      console.log('new id');
+    }
+
   }
 
   updateToken(e) {
@@ -40,8 +47,8 @@ class TokenEditor extends Component {
     const { id, type=null, name=null, atk, def, abilities } = this.props
     return (
       <div className="token-creature-editor">
-        <form onSubmit={ this.updateToken }>
-          <legend>Token Creature</legend>
+        <form onSubmit={ this.updateToken } onChange={ (e) => { console.log('chnage', e.target) }}>
+          <legend>Token Creature: { id }</legend>
           <fieldset>
             <ColorPicker onSelect={ () => {} } />
             <label>Type</label>
