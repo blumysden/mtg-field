@@ -14,7 +14,7 @@ class TokenEditor extends Component {
 
   constructor(props) {
     super(props);
-    ['updateToken', 'close'].forEach((m) => {
+    ['updateToken', 'close', 'handleForm'].forEach((m) => {
       this[m] = this[m].bind(this);
     })
   }
@@ -26,14 +26,19 @@ class TokenEditor extends Component {
 
   }
 
-  updateToken(e) {
+  handleForm(e) {
     e.preventDefault();
+    this.updateToken()
+  }
+
+  updateToken(color) {
     let updates = {
       type: this.tokenType.value,
       name: this.tokenName.value,
       atk: this.tokenAtk.value,
       def: this.tokenDef.value,
-      abilities: this.tokenAbilities.value
+      abilities: this.tokenAbilities.value,
+      color: color || this.props.color
     }
     if (!this.props.id) {
       updates.id = Date.parse(new Date());
@@ -53,10 +58,10 @@ class TokenEditor extends Component {
     const { id, type='', name='', atk='', def='', abilities='' } = this.props
     return (
       <div className="token-creature-editor">
-        <form onSubmit={ this.updateToken } onChange={ this.updateToken }>
+        <form onSubmit={ this.handleForm } onChange={ this.handleForm }>
           <legend>Token Creature: { id }</legend>
           <fieldset>
-            <ColorPicker onSelect={ () => {} } />
+            <ColorPicker onSelect={ this.updateToken } />
             <label>Type</label>
             <input type="text" value={ type } ref={ elem => this.tokenType = elem }/>
             <label>Name</label>
