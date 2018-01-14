@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { editToken } from './actions'
+import { setEditingToken } from './actions'
 
 const mapStateToProps = (state, ownProps) => {
   const { tokens } = state;
@@ -16,7 +16,7 @@ class Token extends Component {
   }
 
   edit(e) {
-    this.props.dispatch(editToken(this.props.id))
+    this.props.dispatch(setEditingToken(this.props.id))
   }
 
 

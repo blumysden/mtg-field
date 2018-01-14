@@ -79,7 +79,6 @@ button.life-stats {
   // position: absolute;
   // z-index: 100;
   // width: 60px;
-  overflow: hidden;
   white-space: nowrap;
   transition: width 1s;
 
@@ -97,6 +96,7 @@ button.life-stats {
     box-sizing: border-box;
     border-radius: 21px;
     text-align: center;
+    position: relative;
     // display: none;
 
     .settings-on & {
@@ -108,6 +108,18 @@ button.life-stats {
       background-size: cover;
       border: none;
       display: inline-block;
+    }
+
+    &.selected:after {
+      height: 46px;
+      width: 46px;
+      border-radius: 23px;
+      content: '';
+      background-color: yellow;
+      top: 0;
+      left: 0;
+      z-index: -10;
+      position: absolute;
     }
   }
 }

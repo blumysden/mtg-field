@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeLife, changeColor, toggleSettings, editToken } from './actions'
+import { changeLife, changeColor, toggleSettings, setEditingToken } from './actions'
 import './App.css';
 import 'mana-font/css/mana.css'
 import Token from './token'
@@ -51,7 +51,7 @@ class App extends Component {
   }
 
   newToken() {
-    this.props.dispatch(editToken())
+    this.props.dispatch(setEditingToken())
   }
 
   render() {

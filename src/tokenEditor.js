@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addToken, closeTokenEditor } from './actions'
+import { addToken, closeTokenEditor, editToken, setEditingToken } from './actions'
+import { getTokenById } from './selectors'
 import ColorPicker from './color-picker'
 
 const mapStateToProps = (state, ownProps) => {
   const { tokens, field } = state;
-  const props = tokens.find((t) => t.id === field.editing)
+  const props = getTokenById(state.tokens, field.editing)
   return (props) ? { ...props } : {}
 }
 
@@ -13,7 +14,7 @@ class TokenEditor extends Component {
 
   constructor(props) {
     super(props);
-    ['updateToken', 'cancel'].forEach((m) => {
+    ['updateToken', 'close'].forEach((m) => {
       this[m] = this[m].bind(this);
     })
   }
@@ -27,27 +28,32 @@ class TokenEditor extends Component {
 
   updateToken(e) {
     e.preventDefault();
-    this.props.dispatch(addToken({
-      id: Date.parse(new Date()),
+    let updates = {
       type: this.tokenType.value,
       name: this.tokenName.value,
       atk: this.tokenAtk.value,
       def: this.tokenDef.value,
       abilities: this.tokenAbilities.value
-    }))
-    this.cancel(e);
+    }
+    if (!this.props.id) {
+      updates.id = Date.parse(new Date());
+      this.props.dispatch(addToken(updates))
+      this.props.dispatch(setEditingToken(updates.id))
+    } else {
+      this.props.dispatch(editToken(this.props.id, updates))
+    }
   }
 
-  cancel(e) {
+  close(e) {
     e.preventDefault();
     this.props.dispatch(closeTokenEditor())
   }
 
   render() {
-    const { id, type=null, name=null, atk, def, abilities } = this.props
+    const { id, type='', name='', atk='', def='', abilities='' } = this.props
     return (
       <div className="token-creature-editor">
-        <form onSubmit={ this.updateToken } onChange={ (e) => { console.log('chnage', e.target) }}>
+        <form onSubmit={ this.updateToken } onChange={ this.updateToken }>
           <legend>Token Creature: { id }</legend>
           <fieldset>
             <ColorPicker onSelect={ () => {} } />
@@ -63,8 +69,7 @@ class TokenEditor extends Component {
             <input type="text" value={ atk } ref={ elem => this.tokenAtk = elem }/>/
             <input type="text" value={ def } ref={ elem => this.tokenDef = elem }/>
           </fieldset>
-          <button onClick={ this.cancel }>Cancel</button>
-          <button>Save</button>
+          <button onClick={ this.close }>DONE</button>
         </form>
       </div>
     );

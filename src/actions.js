@@ -27,9 +27,17 @@ export const addToken = (token) => {
   }
 }
 
-export const editToken = (id) => {
+export const editToken = (id, token) => {
   return {
     type: actionTypes.EDIT_TOKEN,
+    id,
+    token
+  }
+}
+
+export const setEditingToken = (id) => {
+  return {
+    type: actionTypes.SET_EDITING_TOKEN,
     id
   }
 }

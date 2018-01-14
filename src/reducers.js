@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import * as actionTypes from './actionTypes';
+import { getTokenById } from './selectors'
 
 export function field (state={
   color: 'white',
@@ -17,7 +18,7 @@ export function field (state={
         ...state,
         settings: !state.settings
       }
-    case actionTypes.EDIT_TOKEN:
+    case actionTypes.SET_EDITING_TOKEN:
       return {
         ...state,
         editing: action.id
@@ -33,12 +34,21 @@ export function field (state={
 }
 
 export function tokens (state=[], action) {
+  let token = (action.id) ? getTokenById(state, action.id) : null;
   switch (action.type) {
     case actionTypes.ADD_TOKEN:
       return state.concat({
         ...action.token,
         id: Date.parse(new Date())
       });
+      case actionTypes.EDIT_TOKEN:
+        return state.map((t) => {
+          if (t.id == action.id) {
+            return { ...action.token, id: action.id }
+          } else {
+            return { ...t }
+          }
+        });
     default:
       return state
   }

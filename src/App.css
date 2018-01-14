@@ -55,7 +55,6 @@ button.life-stats {
   background-color: inherit; }
 
 .color-controls {
-  overflow: hidden;
   white-space: nowrap;
   transition: width 1s; }
   .settings-on .color-controls {
@@ -69,7 +68,8 @@ button.life-stats {
     line-height: 42px;
     box-sizing: border-box;
     border-radius: 21px;
-    text-align: center; }
+    text-align: center;
+    position: relative; }
     .settings-on .color-controls li {
       display: inline-block; }
     .color-controls li.settings {
@@ -77,6 +77,16 @@ button.life-stats {
       background-size: cover;
       border: none;
       display: inline-block; }
+    .color-controls li.selected:after {
+      height: 46px;
+      width: 46px;
+      border-radius: 23px;
+      content: '';
+      background-color: yellow;
+      top: 0;
+      left: 0;
+      z-index: -10;
+      position: absolute; }
 
 .deck {
   width: 70px;
