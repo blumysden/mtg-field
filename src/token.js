@@ -21,10 +21,11 @@ class Token extends Component {
 
 
   render() {
-    const { name, id } = this.props
+    const { name, id, color, type, atk, def } = this.props
     return (
-      <div className="token-creature" onClick={ this.edit }>
+      <div className={ `token-creature ${color}`} onClick={ this.edit }>
         <p>{ name }</p>
+        <div className="stats">{ atk }/{ def }</div>
       </div>
     );
   }
