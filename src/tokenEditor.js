@@ -58,13 +58,14 @@ class TokenEditor extends Component {
   }
 
   render() {
-    const { id, type='', name='', atk='', def='', abilities='' } = this.props
+    const { id, color, type='', name='', atk='', def='', abilities='' } = this.props
     return (
       <div className="token-creature-editor">
+        <div className={ `bg-mask ${color}`} />
         <form onSubmit={ this.handleForm } onChange={ this.handleForm }>
           <legend>Token Creature: { id }</legend>
           <fieldset>
-            <ColorPicker onSelect={ this.updateToken } />
+            <ColorPicker onSelect={ this.updateToken } selected={ color }/>
             <label>Type</label>
             <input type="text" value={ type } ref={ elem => this.tokenType = elem }/>
             <label>Name</label>

@@ -66,8 +66,8 @@ class App extends Component {
       <div>
         <div className={ `bg-mask ${fieldColor}`}></div>
         <div className={ `field settings-${ (settings) ? 'on': 'off' } editing-${ (editing === false) ? 'off': 'on' }`}>
-          <ColorPicker onSelect={ this.changeColor } />
-          <button onClick={ this.reset } type="button">reset</button>
+          <ColorPicker onSelect={ this.changeColor } selected={ fieldColor } />
+          <button className="reset-button" onClick={ this.reset } type="button">reset</button>
           <div className="player">
             <button className="life-stats" onClick={ this.subtractOneLife }>-</button>
             <span className="life-points life-stats">{ lifePoints }</span>

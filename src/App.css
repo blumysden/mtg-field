@@ -47,6 +47,11 @@ body {
 .field.black .life-stats {
   color: #fff; }
 
+.reset-button {
+  position: absolute;
+  top: 10px;
+  right: 10px; }
+
 button.life-stats {
   font-size: 60px;
   padding: 0;
@@ -55,8 +60,9 @@ button.life-stats {
   background-color: inherit; }
 
 .color-controls {
-  white-space: nowrap;
-  transition: width 1s; }
+  width: 60%;
+  margin: 0 auto;
+  white-space: nowrap; }
   .settings-on .color-controls {
     width: 100%; }
   .color-controls li {
@@ -69,7 +75,8 @@ button.life-stats {
     box-sizing: border-box;
     border-radius: 21px;
     text-align: center;
-    position: relative; }
+    position: relative;
+    opacity: .5; }
     .settings-on .color-controls li {
       display: inline-block; }
     .color-controls li.settings {
@@ -77,22 +84,14 @@ button.life-stats {
       background-size: cover;
       border: none;
       display: inline-block; }
-    .color-controls li.selected:after {
-      height: 46px;
-      width: 46px;
-      border-radius: 23px;
-      content: '';
-      background-color: yellow;
-      top: 0;
-      left: 0;
-      z-index: -10;
-      position: absolute; }
+    .color-controls li.selected {
+      opacity: 1; }
 
 .deck {
   width: 70px;
   height: 100px;
   text-align: center;
-  margin: 0;
+  margin: 0 10px 10px 0;
   padding: 0;
   border-radius: 5px;
   border: 1px solid #000;
@@ -104,7 +103,7 @@ button.life-stats {
   width: 70px;
   height: 100px;
   text-align: center;
-  margin: 0;
+  margin: 0 10px 10px 0;
   padding: 0;
   border-radius: 5px;
   border: 1px solid #000;
@@ -165,3 +164,8 @@ button.life-stats {
   .token-creature-editor .strength input {
     display: inline-block;
     width: 50px; }
+
+.battlefield {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; }

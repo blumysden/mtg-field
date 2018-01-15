@@ -19,13 +19,19 @@ class ColorPicker extends Component {
     }
   }
 
+  renderColors() {
+    return ['blue', 'red', 'green', 'black', 'white'].map((color) => {
+      let colorClass = `${color} ms ms-${ (color === 'blue') ? 'u' : color[0] }`
+      if (this.props.selected === color) {
+        colorClass += ' selected';
+      }
+      return <li className={ colorClass } data-color={ color } key={ `picker-${color}`}/>
+    })
+  }
+
   render() {
     return <ul className="color-controls" onClick={ this.changeColor }>
-      <li className="blue ms ms-u" data-color="blue"></li>
-      <li className="red ms ms-r" data-color="red"></li>
-      <li className="green ms ms-g" data-color="green"></li>
-      <li className="black ms ms-b" data-color="black"></li>
-      <li className="white ms ms-w" data-color="white"></li>
+      { this.renderColors() }
     </ul>
   }
 }
