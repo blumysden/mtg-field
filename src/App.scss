@@ -5,6 +5,29 @@ $green: rgba(77, 160, 64, 1);
 $black: #000;
 $white: #fff;
 
+@mixin card {
+  width: 70px;
+  height: 100px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  border-radius: 5px;
+  border: 1px solid #000;
+}
+
+@mixin mana($diameter) {
+  margin: 0;
+  margin-right: 5px;
+  height: $diameter;
+  width: $diameter;
+  font-size: $diameter - 10px;
+  line-height: $diameter;
+  box-sizing: border-box;
+  border-radius: $diameter/2;
+  text-align: center;
+  position: relative;
+}
+
 body {
   touch-action: manipulation;
   background-image: url('./bg-texture.jpg');
@@ -87,17 +110,7 @@ button.life-stats {
   }
 
   li {
-    margin: 0;
-    margin-right: 5px;
-    height: 42px;
-    width: 42px;
-    font-size: 32px;
-    line-height: 42px;
-    box-sizing: border-box;
-    border-radius: 21px;
-    text-align: center;
-    position: relative;
-    // display: none;
+    @include mana(42px);
 
     .settings-on & {
       display: inline-block;
@@ -124,16 +137,6 @@ button.life-stats {
   }
 }
 
-@mixin card {
-  width: 70px;
-  height: 100px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  border-radius: 5px;
-  border: 1px solid #000;
-}
-
 .deck {
   @include card();
   background-image: url('./mtg-card-back.png');
@@ -145,6 +148,10 @@ button.life-stats {
   @include card();
   position: relative;
   font-size: 12px;
+
+  .token-color {
+    @include mana(40px);
+  }
 
   .stats {
     position: absolute;

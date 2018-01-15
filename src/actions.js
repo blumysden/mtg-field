@@ -1,9 +1,20 @@
 import * as actionTypes from './actionTypes';
 
+export const save = () => {
+  return { type: actionTypes.SAVE }
+}
+
+export const reset = () => {
+  return { type: actionTypes.RESET }
+}
+
 export const changeLife = (change) => {
-  return {
-    type: actionTypes.CHANGE_LIFE,
-    change
+  return (dispatch, getState) => {
+    dispatch({
+      type: actionTypes.CHANGE_LIFE,
+      change
+    })
+    dispatch(save())
   }
 }
 

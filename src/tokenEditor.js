@@ -7,7 +7,9 @@ import ColorPicker from './color-picker'
 const mapStateToProps = (state, ownProps) => {
   const { tokens, field } = state;
   const props = getTokenById(state.tokens, field.editing)
-  return (props) ? { ...props } : {}
+  return (props) ? { ...props } : {
+    color: field.color
+  }
 }
 
 class TokenEditor extends Component {
@@ -40,6 +42,7 @@ class TokenEditor extends Component {
       abilities: this.tokenAbilities.value,
       color: color || this.props.color
     }
+    console.log('updates!', updates);
     if (!this.props.id) {
       updates.id = Date.parse(new Date());
       this.props.dispatch(addToken(updates))

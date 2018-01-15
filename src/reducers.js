@@ -1,13 +1,42 @@
 import { combineReducers } from 'redux'
 import * as actionTypes from './actionTypes';
 import { getTokenById } from './selectors'
+import Session from './session'
 
-export function field (state={
-  color: 'white',
-  settings: false,
-  editing: false
-}, action) {
+const SESSION = new Session({
+  persistent: true,
+  key: 'mtg-field'
+})
+
+const DEFAULT_STORE = {
+  field: {
+    color: 'white',
+    settings: false,
+    editing: false
+  },
+  tokens: [],
+  player: {
+    lifePoints: 20
+  }
+}
+const SAVED_STORE = SESSION.get('store')
+const INITIAL_STORE = SAVED_STORE || DEFAULT_STORE;
+
+
+const updateSessionStore = (slice, store) => {
+  const current = SESSION.get('store') || { ...DEFAULT_STORE };
+  let updated = { ...current }
+  updated[slice] = store
+  SESSION.set('store', updated);
+  return store;
+}
+
+export function field (state=INITIAL_STORE.field, action) {
   switch (action.type) {
+    case actionTypes.SAVE:
+      return updateSessionStore('field', state);
+    case actionTypes.RESET:
+      return updateSessionStore('field', { ...DEFAULT_STORE.field });
     case actionTypes.CHANGE_COLOR:
       return {
         ...state,
@@ -33,9 +62,13 @@ export function field (state={
   }
 }
 
-export function tokens (state=[], action) {
+export function tokens (state=INITIAL_STORE.tokens, action) {
   let token = (action.id) ? getTokenById(state, action.id) : null;
   switch (action.type) {
+    case actionTypes.SAVE:
+      return updateSessionStore('tokens', state);
+      case actionTypes.RESET:
+        return updateSessionStore('tokens', [...DEFAULT_STORE.tokens]);
     case actionTypes.ADD_TOKEN:
       return state.concat({
         ...action.token,
@@ -54,10 +87,12 @@ export function tokens (state=[], action) {
   }
 }
 
-export function player (state={
-  lifePoints: 20
-}, action) {
+export function player (state=INITIAL_STORE.player, action) {
   switch (action.type) {
+    case actionTypes.SAVE:
+      return updateSessionStore('player', state);
+    case actionTypes.RESET:
+      return updateSessionStore('player', { ...DEFAULT_STORE.player });
     case actionTypes.CHANGE_LIFE:
       return {
         ...state,

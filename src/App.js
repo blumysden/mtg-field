@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeLife, changeColor, toggleSettings, setEditingToken } from './actions'
+import { changeLife, changeColor, toggleSettings, setEditingToken, reset } from './actions'
 import './App.css';
 import 'mana-font/css/mana.css'
 import Token from './token'
@@ -28,10 +28,16 @@ class App extends Component {
     this.changeColor = this.changeColor.bind(this);
     this.toggleSettings = this.toggleSettings.bind(this);
     this.newToken = this.newToken.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('new props?', newProps);
+    // console.log('new props?', newProps);
+  }
+
+  reset(e) {
+    e.preventDefault();
+    this.props.dispatch(reset());
   }
 
   addOneLife() {
@@ -55,13 +61,13 @@ class App extends Component {
   }
 
   render() {
-    const { fieldColor, lifePoints, settings, tokens, editing } = this.props
-    console.log('how many tokens?', tokens);
+    const { fieldColor, lifePoints, settings, tokens, editing } = this.props;
     return (
       <div>
         <div className={ `bg-mask ${fieldColor}`}></div>
         <div className={ `field settings-${ (settings) ? 'on': 'off' } editing-${ (editing === false) ? 'off': 'on' }`}>
           <ColorPicker onSelect={ this.changeColor } />
+          <button onClick={ this.reset } type="button">reset</button>
           <div className="player">
             <button className="life-stats" onClick={ this.subtractOneLife }>-</button>
             <span className="life-points life-stats">{ lifePoints }</span>
