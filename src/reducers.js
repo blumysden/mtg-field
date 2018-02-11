@@ -20,6 +20,7 @@ const DEFAULT_STORE = {
   }
 }
 const SAVED_STORE = SESSION.get('store')
+console.log('SAVED STORE????', SAVED_STORE);
 const INITIAL_STORE = SAVED_STORE || DEFAULT_STORE;
 
 
@@ -28,6 +29,7 @@ const updateSessionStore = (slice, store) => {
   let updated = { ...current }
   updated[slice] = store
   SESSION.set('store', updated);
+  console.log('add to ' + slice, updated);
   return store;
 }
 

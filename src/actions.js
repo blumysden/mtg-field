@@ -19,9 +19,12 @@ export const changeLife = (change) => {
 }
 
 export const changeColor = (color) => {
-  return {
-    type: actionTypes.CHANGE_COLOR,
-    color
+  return (dispatch, getState) => {
+    dispatch({
+      type: actionTypes.CHANGE_COLOR,
+      color
+    })
+    dispatch(save())
   }
 }
 
@@ -54,5 +57,8 @@ export const setEditingToken = (id) => {
 }
 
 export const closeTokenEditor = () => {
-  return { type: actionTypes.CLOSE_TOKEN_EDITOR }
+  return (dispatch, getState) => {
+    dispatch({ type: actionTypes.CLOSE_TOKEN_EDITOR })
+    dispatch(save())
+  }
 }

@@ -25,12 +25,10 @@ body {
   z-index: -100;
   opacity: .5; }
 
-.settings {
-  height: 40px;
-  width: 40px; }
+.field {
+  padding-top: 10px; }
 
 .player {
-  border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -88,8 +86,8 @@ button.life-stats {
       opacity: 1; }
 
 .deck {
-  width: 70px;
-  height: 100px;
+  width: 80px;
+  height: 120px;
   text-align: center;
   margin: 0 10px 10px 0;
   padding: 0;
@@ -100,15 +98,16 @@ button.life-stats {
   background-size: cover; }
 
 .token-creature {
-  width: 70px;
-  height: 100px;
+  width: 80px;
+  height: 120px;
   text-align: center;
   margin: 0 10px 10px 0;
   padding: 0;
   border-radius: 5px;
   border: 1px solid #000;
   position: relative;
-  font-size: 12px; }
+  font-size: 12px;
+  background-color: #fff; }
   .token-creature .token-color {
     margin: 0;
     margin-right: 5px;
@@ -156,16 +155,25 @@ button.life-stats {
     font-family: "Alegreya", serif;
     margin: 10px auto;
     width: 80%; }
+  .token-creature-editor input[type=text] {
+    padding: 3px 5px; }
   .token-creature-editor label,
   .token-creature-editor legend {
     text-align: center; }
   .token-creature-editor input {
     border: 1px solid #999; }
-  .token-creature-editor .strength input {
-    display: inline-block;
-    width: 50px; }
+  .token-creature-editor .buttons {
+    text-align: center; }
+  .token-creature-editor .strength {
+    text-align: center; }
+    .token-creature-editor .strength input {
+      display: inline-block;
+      width: 50px; }
+      .token-creature-editor .strength input:first-of-type {
+        margin-right: 10px; }
 
 .battlefield {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start; }
+  justify-content: flex-start;
+  padding: 10px; }

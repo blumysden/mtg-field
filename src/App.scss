@@ -6,8 +6,8 @@ $black: #000;
 $white: #fff;
 
 @mixin card {
-  width: 70px;
-  height: 100px;
+  width: 80px;
+  height: 120px;
   text-align: center;
   margin: 0 10px 10px 0;
   padding: 0;
@@ -62,13 +62,11 @@ body {
   opacity: .5;
 }
 
-.settings {
-  height: 40px;
-  width: 40px;
+.field {
+  padding-top: 10px;
 }
 
 .player {
-  border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -145,6 +143,7 @@ button.life-stats {
   @include card();
   position: relative;
   font-size: 12px;
+  background-color: #fff;
 
   .token-color {
     @include mana(40px);
@@ -195,6 +194,10 @@ button.life-stats {
     width: 80%;
   }
 
+  input[type=text] {
+    padding: 3px 5px;
+  }
+
   label,
   legend {
     text-align: center;
@@ -204,9 +207,20 @@ button.life-stats {
     border: 1px solid #999;
   }
 
-  .strength input {
-    display: inline-block;
-    width: 50px;
+  .buttons {
+    text-align: center;
+  }
+
+  .strength {
+    text-align: center;
+    input {
+      display: inline-block;
+      width: 50px;
+
+      &:first-of-type {
+        margin-right: 10px;
+      }
+    }
   }
 }
 
@@ -214,4 +228,5 @@ button.life-stats {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  padding: 10px;
 }

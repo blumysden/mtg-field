@@ -36,13 +36,11 @@ class TokenEditor extends Component {
   updateToken(color) {
     let updates = {
       type: this.tokenType.value,
-      name: this.tokenName.value,
       atk: this.tokenAtk.value,
       def: this.tokenDef.value,
       abilities: this.tokenAbilities.value,
       color: color || this.props.color
     }
-    console.log('updates!', updates);
     if (!this.props.id) {
       updates.id = Date.parse(new Date());
       this.props.dispatch(addToken(updates))
@@ -58,27 +56,27 @@ class TokenEditor extends Component {
   }
 
   render() {
-    const { id, color, type='', name='', atk='', def='', abilities='' } = this.props
+    const { id, color, type='', name='', atk=1, def=1, abilities='' } = this.props
     return (
       <div className="token-creature-editor">
         <div className={ `bg-mask ${color}`} />
         <form onSubmit={ this.handleForm } onChange={ this.handleForm }>
-          <legend>Token Creature: { id }</legend>
+          <legend>Token Creature</legend>
           <fieldset>
             <ColorPicker onSelect={ this.updateToken } selected={ color }/>
             <label>Type</label>
             <input type="text" value={ type } ref={ elem => this.tokenType = elem }/>
-            <label>Name</label>
-            <input type="text" value={ name } ref={ elem => this.tokenName = elem }/>
             <label>Abilities</label>
             <input type="text" value={ abilities } ref={ elem => this.tokenAbilities = elem }/>
           </fieldset>
           <fieldset className="strength">
             <label>Attributes</label>
-            <input type="text" value={ atk } ref={ elem => this.tokenAtk = elem }/>/
+            <input type="text" value={ atk } ref={ elem => this.tokenAtk = elem }/>
             <input type="text" value={ def } ref={ elem => this.tokenDef = elem }/>
           </fieldset>
-          <button onClick={ this.close }>DONE</button>
+          <fieldset className="buttons">
+            <button onClick={ this.close }>DONE</button>
+          </fieldset>
         </form>
       </div>
     );

@@ -21,13 +21,14 @@ class Token extends Component {
 
 
   render() {
-    const { name, id, color, type, atk, def } = this.props,
+    const { name, id, color, type, atk, def, abilities } = this.props,
           colorClass = `token-color ${color} ms ms-${ (color === 'blue') ? 'u' : color[0] }`
 
     return (
       <div className={ `token-creature`} onClick={ this.edit }>
-        <p>{ name }</p>
+        <p>{ type }</p>
         <div className={ colorClass }/>
+        <p>{ abilities }</p>
         <div className="stats">{ atk }/{ def }</div>
       </div>
     );
